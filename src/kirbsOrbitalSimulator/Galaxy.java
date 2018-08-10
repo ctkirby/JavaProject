@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Galaxy {
 	
-	/**s
+	/**
 	 * List of orbital body objects.
 	 */
 	private ArrayList<OrbitalBody> obs;
@@ -37,7 +37,7 @@ public class Galaxy {
 	}
 	
 	/**
-	 * Moves the objects foward over the desired months and stores the pas data for each month.
+	 * Moves the objects forward over the desired months and stores the pas data for each month.
 	 * @param months
 	 */
 	public void projectMovements(int months) {
@@ -113,7 +113,7 @@ public class Galaxy {
 	 */
 	private BigDecimal calc1DimensionalChangeInSpeed(BigDecimal coord1, BigDecimal coord2, BigDecimal otherMass) {
 		BigDecimal negOne = new BigDecimal("-1");
-		if (ifBdZero(coord1.add(coord2))) {
+		if (coord1.add(coord2).compareTo(zero) == 0) {
 			return new BigDecimal("0");
 		}
 		BigDecimal distance = coord1.add(coord2).divide(two).setScale(2, RoundingMode.CEILING);
@@ -128,30 +128,25 @@ public class Galaxy {
 		 */
 		return sqrtBigDecimal(gravitationalConstant.multiply(otherMass).divide(distance, 2, RoundingMode.CEILING));
 	}
-	
-	private boolean ifBdZero(BigDecimal inQuestion) {
-		return inQuestion.compareTo(zero) == 0;
-	}
-	
+	/**
+	 * Finds the square root of a BigDecimal. This function only handles positive numbers... TODO or does it?
+	 * @param toBeSquared The number we need the sqrt of.
+	 * @return The numbers sqrt.
+	 */
 	private BigDecimal sqrtBigDecimal(BigDecimal toBeSquared) {
 		BigDecimal infiniteAvoid = BigDecimal.valueOf(2L);
-		BigDecimal y = toBeSquared.divide(infiniteAvoid);
-		//BandAid Solution 
-//		if (toBeSquared.compareTo(new BigDecimal("0")) == 0) {
-//			return new BigDecimal("0");
-//		}		
+		BigDecimal y = toBeSquared.divide(infiniteAvoid);		
 		BigDecimal value = toBeSquared.divide(y);
 		while (y.compareTo(value) > 0) {
 			y = value.add(y).divide(infiniteAvoid).setScale(2,RoundingMode.CEILING);
-			/**
-			 * TO OTHER FIX INFINITE DECIMAL ISSUE
-			 * https://stackoverflow.com/questions/4591206/arithmeticexception-non-terminating-decimal-expansion-no-exact-representable
-			 */
 			value = toBeSquared.divide(y, 2, RoundingMode.HALF_UP);
 		}
 		return y;
 	}
-	
+	/**
+	 * Adds a new orbital body to the ArrayList of orbital bodies.
+	 * @param nObs new OrbitalBody
+	 */
 	public void addObs(OrbitalBody nObs) {
 		obs.add(nObs);
 	}

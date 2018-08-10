@@ -32,7 +32,7 @@ public class Test2dOrbitOfEarthAndSun {
 		earth.print();
 		
 		/**
-		 * Run sim
+		 * Run simulation
 		 */
 		testGalaxy.projectMovements(12);
 		

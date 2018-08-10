@@ -1,7 +1,7 @@
 package kirbsOrbitalSimulator;
 import java.math.BigDecimal;
 /**
- * Position and speed data or pas. 
+ * Position and speed infomation. "pas" for short. 
  * @author Charles T. Kirby
  *
  */
