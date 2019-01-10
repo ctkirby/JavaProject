@@ -15,13 +15,14 @@ public class mainClass {
 	//Decimal formatter
 	final private static DecimalFormat df = new DecimalFormat("#0.00");
 	final private static String pad = "               ";
-	//Tax brackets
-	final private static double stateFlatTax = .05499;
+	//Taxes
 	final private static double medicareTax = .062;
 	final private static double socialSecTax = .0145;
+	//NC tax brackets
+	final private static double stateFlatTax = .05499;
 	final private static double[] fedTaxBrackets = {.1,.12,.22,.24,.32,.35,.37};
 	final private static double[] fedTaxBracketM = {0,9525,38700,83500,157500,200000,500000,0};
-	
+	//NY tax brackets
 	final private static double[] nyIncomeTaxBrackets = {.04,.045,.0525,.059,.0645,.0665,.0685,.0882};
 	final private static double[] nyIncomeTaxBracketsM = {0,8450,11650,13850,21300,80150,214000,1070350};
 	
@@ -41,7 +42,7 @@ public class mainClass {
 		//hours = scan.nextDouble();
 		scan.close();
 		income = payrate * hours;	
-		NYtaxCalc();
+		NCtaxCalc();
 	}
 	
 	private static void NCtaxCalc() {		
